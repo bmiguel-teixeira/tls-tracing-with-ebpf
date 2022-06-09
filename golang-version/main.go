@@ -60,7 +60,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	err = ebpfModule.AttachUprobe(binaryPath, "SSL_read", sslReadReturnUProbe, -1)
+	err = ebpfModule.AttachUretprobe(binaryPath, "SSL_read", sslReadReturnUProbe, -1)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to attach SSL_read: %s\n", err)
 		os.Exit(1)
@@ -84,7 +84,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	err = ebpfModule.AttachUprobe(binaryPath, "SSL_write", sslWriteReturnUProbe, -1)
+	err = ebpfModule.AttachUretprobe(binaryPath, "SSL_write", sslWriteReturnUProbe, -1)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to attach SSL_write: %s\n", err)
 		os.Exit(1)
